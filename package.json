@@ -1,0 +1,59 @@
+{
+    "name": "hello-world",
+    "version": "0.1.0",
+    "description": "React sample Hello World application",
+    "author": "Victor Corrales",
+    "license": "GPL-3.0-or-later",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vcorrales/hello-world.git"
+    },
+    "keywords": [
+        "hello world",
+        "react",
+        "babel",
+        "webpack"
+    ],
+    "scripts": {
+        "build": "babel-node build_scripts/build.js",
+        "dev:server": "babel-node build_scripts/devServer.js",
+        "lint": "esw webpack.config.dev.js src/**/*.js --color",
+        "lint:watch": "npm run lint -- --watch",
+        "start": "npm-run-all --parallel lint:watch dev:server",
+        "test:watch": "npm run test -- --watch"
+    },
+    "dependencies": {
+        "react": "16.8.6",
+        "react-dom": "16.8.6"
+    },
+    "devDependencies": {
+        "babel-cli": "6.26.0",
+        "babel-core": "6.26.3",
+        "babel-loader": "7.1.5",
+        "babel-preset-env": "1.7.0",
+        "babel-preset-react": "6.24.1",
+        "babel-register": "6.26.0",
+        "babel-runtime": "6.26.0",
+        "braces": "2.3.2",
+        "chalk": "2.4.2",
+        "clean-webpack-plugin": "2.0.1",
+        "css-loader": "2.1.1",
+        "eslint": "5.16.0",
+        "eslint-plugin-import": "2.16.0",
+        "eslint-plugin-react": "7.12.4",
+        "eslint-watch": "5.0.1",
+        "express": "4.16.4",
+        "file-loader": "3.0.1",
+        "html-loader": "0.5.5",
+        "html-webpack-plugin": "3.2.0",
+        "npm-run-all": "4.1.5",
+        "open": "6.0.0",
+        "path": "0.12.7",
+        "style-loader": "0.23.1",
+        "webpack": "4.29.6",
+        "webpack-cli": "3.3.0",
+        "webpack-dev-server": "3.2.1",
+        "webpack-node-externals": "1.7.2",
+        "webpack-md5-hash": "0.0.6"
+    }
+}
