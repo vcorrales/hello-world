@@ -1,14 +1,19 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+
+/*eslint-disable no-unused-vars*/
 
 class App extends React.Component {
 render() {
     return (
       <div>
         <h1>Hello world!</h1>
-        <p>This is a dynamic greeting inside a React App</p>
+        <p>This is a dynamic greeting powered by React</p>
       </div>
     );
   }
 }
-render(<App />, document.getElementById('app'));
+
+ReactDOM.render(<App />, document.getElementById('app'));
+
+module.hot.accept();

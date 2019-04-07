@@ -25,6 +25,8 @@ server.use(middleware);
 const hotReplacement = new webpackHotMiddleware(compiler);
 server.use(hotReplacement);
 
+server.use(express.static(DIST_DIR));
+
 server.get('/', (req, res, next) => {
     compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
         if (err) {

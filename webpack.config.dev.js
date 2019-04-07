@@ -3,33 +3,28 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-// main: ['webpack-hot-middleware/client', path.resolve(__dirname, 'src/index.js')]
 
 export default {
-  mode: 'development',
-  devtool: 'inline-source-map',
-  
-  entry: {
-    main: [path.resolve(__dirname,'src/index.js'), 'webpack-hot-middleware/client']
-  },
-
-  target: 'web',
-
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
-  },
 
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     hot: true,
-    open: 'Google Chrome'
+    open: 'Google Chrome',
+    watchContentBase: true,
     /** 
      *  To create a proxy for a back-end
      *   proxy: {'/api': 'http://localhost:3000'},
      */
   },
+
+  devtool: 'inline-source-map',
+  
+  entry: {
+    main: [path.resolve(__dirname,'src/index.js'), 
+           'webpack-hot-middleware/client?http://localhost:3000']
+  },
+
+  mode: 'development',
 
   module: {
     rules: [
@@ -40,17 +35,38 @@ export default {
     ]
   },
 
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
+  },
+
   plugins: [
 
     // Create HTML file that includes reference to bundled JS.
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
       filename: 'index.html',
       inject: true,
+      template: 'src/index.html',
     }),
 
     // Active hot code replacement for instant feedback.
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
+
+  resolve: {
+    alias: { 'react-dom': '@hot-loader/react-dom'},
+    extensions: ['*', '.js', '.jsx']
+  },
+
+  target: 'web',
+
+  watch: true,
+
+  watchOptions: {
+    ignored: ['node_modules']
+  },
+
+
 };
