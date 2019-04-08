@@ -3,25 +3,26 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-
 export default {
 
   devServer: {
+
     contentBase: path.resolve(__dirname, 'build'),
     hot: true,
     open: 'Google Chrome',
+    progress: true,
     watchContentBase: true,
     /** 
-     *  To create a proxy for a back-end
-     *   proxy: {'/api': 'http://localhost:3000'},
+     * To create a proxy for a back-end
+     *    proxy: {'/api': 'http://localhost:3000'},
      */
   },
 
   devtool: 'inline-source-map',
-  
+    
   entry: {
     main: [path.resolve(__dirname,'src/index.js'), 
-           'webpack-hot-middleware/client?http://localhost:3000']
+           'webpack-hot-middleware/client?reload=true']
   },
 
   mode: 'development',
@@ -52,7 +53,7 @@ export default {
 
     // Active hot code replacement for instant feedback.
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
 
   resolve: {
